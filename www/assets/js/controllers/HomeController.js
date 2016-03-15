@@ -9,13 +9,7 @@ angular
 	$scope.cardCastLoading = false;
 
 	$scope.searchSubmit = function (text) {
-		var time = text ? 3000 : 0;
-
-		if(text) {
-			$scope.cardCastLoading = true;
-		} else {
-			$scope.searchLoading = true;
-		}
+		$scope.searchLoading = true;
 
 		AJAX.post({
 			key: text || $scope.searchForm,
@@ -32,14 +26,43 @@ angular
 				$scope.app.searchedContacts = data.cards;
 			}
 
+			$scope.searchLoading = false;
+
 			$timeout(function () {
+				scaleCard();
+			});
+		});
+	};
+
+	$scope.cardCast = function () {
+		$scope.cardCastLoading = true;
+
+		navigator.geolocation.getCurrentPosition(function foundLocation (position) {
+			AJAX.post({
+				lat: position.coords.latitude,
+				long: position.coords.longitude,
+				action: 'cardcast',
+				token: $scope.app.token
+			}).then(function (response) {
+				var data = response.data;
+				
+				$scope.app.token = data.token;
+
+				if(data.e) {
+
+				} else {
+					$scope.app.searchedContacts = data.cards;
+				}
+				
 				$scope.cardCastLoading = false;
 				$scope.searchLoading = false;
 
 				$timeout(function () {
 					scaleCard();
-				})
-			}, time);
+				});
+			});
+		}, function noLocation () {
+			alert('Could not find location');
 		});
 	};
 }]);

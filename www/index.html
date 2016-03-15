@@ -58,6 +58,7 @@
 			<div class="spinner-blade"></div>
 		</div>
 	</div>
-	<div class="main slide ng-animate" ui-view></div>
+	<div class="main slide" ui-view></div>
+	<ng-include class="footerNavInclude" ng-if="$state.current.showFooterNav" src="'assets/partials/footerNav.html'"></ng-include>
 </body>
 </html>

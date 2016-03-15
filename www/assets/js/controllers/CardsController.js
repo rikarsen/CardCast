@@ -86,35 +86,41 @@ angular
 		return ($(window).width() - 30) / 1.75 + 'px';
 	};
 
-	$scope.occupations = null;
+	$scope.occupations = {};
+	$scope.occupationsShow = false;
+	$scope.occupationSelected = false;
 
 	$scope.$watch('card.occupation', function (nVal, oVal) {
 		if(nVal !== oVal) {
 			if(nVal == '') {
-				$scope.occupations = null;
-			} else if(nVal.length > 3) {
-				$('html, body').scrollTop($(".relative").offset().top - 70);
+				$scope.occupations = {};
+			} else if(nVal.length > 2) {
+				if($scope.occupationSelected) {
+					$scope.occupationSelected = false;
+				} else {
+					AJAX.post({
+						key: nVal,
+						action: 'getOccupations',
+						token: $scope.app.token
+					}).then(function (response) {
+						var data = response.data;
 
-				$scope.occupations = {1: 'dad asd ', 2: 'dsa das sd'};
+						$scope.occupations = data.occupations;
+						$scope.occupationsShow = true;
 
-				AJAX.post({
-					key: nVal,
-					action: 'getOccupations',
-					token: $scope.app.token
-				}).then(function (response) {
-					var data = response.data;
-
-					console.log(data);
-				});
+						$('html, body').scrollTop($('.relative').offset().top - 70);
+					});
+				}
 			}
 		}
 	});
 
 	$scope.selectOccupation = function (occupation) {
-		$scope.card.occupation = occupation;
+		$scope.occupationsShow = false;
+		$scope.occupations = {};
 
-		$timeout(function () {
-			$scope.occupations = null;
-		});
+		$scope.occupationSelected = true;
+
+		$scope.card.occupation = occupation;
 	};
 }]);

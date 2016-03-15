@@ -30,8 +30,8 @@
 					<label class="input-group-addon" for="create_contact_occupation"><i class="fa fa-user-secret"></i></label>
 					<input type="search" class="form-control" placeholder="Occupation" autocomplate="off" id="create_contact_occupation" ng-model="card.occupation" ng-model-options="{debounce: 1000}">
 				</div>
-				<ul class="input-group-list" ng-if="occupations">
-					<li ng-repeat="occupation in occupations" ng-bind="occupation" ng-click="selectOccupation(occupation)"></li>
+				<ul class="input-group-list" ng-if="occupationsShow">
+					<li ng-repeat="occupation in occupations" ng-bind="occupation.longName" ng-click="selectOccupation(occupation.longName)"></li>
 				</ul>
 			</div>
 			<div class="input-group">

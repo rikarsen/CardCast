@@ -10,6 +10,8 @@ angular
 ])
 
 .controller('AppController', ['$scope', '$state', '$interval', '$window', 'AJAX', 'alerts', function ($scope, $state, $interval, $window, AJAX, alerts) {
+	$scope.$state = $state;
+
 	$scope.app = {
 		loading: true,
 		token: null,
