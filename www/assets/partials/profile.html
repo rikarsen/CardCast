@@ -1,0 +1,40 @@
+<div class="profile page">
+	<div class="content">
+		<div class="profileBox">
+			<div class="avatar">
+				<img ng-if="app.user.photo" ng-src="{{ app.user.photo }}">
+				<div class="loadingPhoto" ng-if="userPhotoLoading"></div>
+				<label ng-show="!app.user.photo" for="edit_profile_image">
+					<i class="fa fa-camera"></i>
+					<p>Upload photo</p>
+				</label>
+				<input ng-show="!app.user.photo" type="file" id="edit_profile_image" name="photo" ng-file-select="onFileSelect($files)" accept="image/*">
+			</div>
+			<a href="javascript:void(0)" onclick="document.getElementById('edit_profile_image').click()" class="editAvatar"><i class="fa fa-pencil"></i> Edit photo</a>
+			<a href="javascript:void(0)" ng-click="saveAvatar()" class="saveAvatar"><i class="fa fa-floppy-o"></i> Save</a>
+			<h1 ng-bind="app.user.firstName + ' ' + app.user.lastName"></h1>
+			<div class="profileButtons">
+				<div class="profileButtonInline">
+					<i class="fa fa-credit-card-alt"></i>
+					<a ui-sref="cards" class="btn btn-default">My Cards</a>
+				</div>
+				<div class="profileButtonInline">
+					<i class="fa fa-plus"></i>
+					<a ui-sref="card({id: 0})" class="btn btn-default">Create Card</a>
+				</div>
+				<div class="profileButtonInline">
+					<i class="fa fa-sign-out"></i>
+					<a href="javascript:void(0)" ng-click="logout()" class="btn btn-default">Logout</a>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<ul class="fa-ul">
+				<li><p class="fullName"><i class="fa-li fa fa-user"></i><strong ng-bind="app.user.firstName + ' ' + app.user.lastName"></strong></p></li>
+				<li><p class="email"><i class="fa-li fa fa-envelope"></i><strong ng-bind="app.user.email"></strong></p></li>
+				<li><p class="phone"><i class="fa-li fa fa-phone"></i><strong ng-bind="app.user.phone"></strong></p></li>
+			</ul>
+		</div>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

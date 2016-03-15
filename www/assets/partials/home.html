@@ -1,0 +1,66 @@
+<div class="home page">
+	<header>
+		<!--<h1>CardCast</h1>-->
+        <div class="logo">
+	    	<img src="assets/images/logo_white.png" alt="CardCast" />
+	    </div>
+	</header>
+	<div class="content">
+		<form class="searchForm">
+			<div class="form-group">
+         	    <div class="input-group" ng-class="{'has-error': signupForm.error}">
+                    <input type="text" class="form-control search" placeholder="Search for people" ng-model="searchForm" id="inpSearch">
+                </div>
+				<div class="clearfix">
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-default btn-block btn-search" ng-click="searchSubmit()">Search</button>
+					</div>
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-default btn-block btn-cardCast" ng-click="searchSubmit('test')">Card Cast</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="overlay ng-animate animate-if noBg" ng-if="searchLoading">
+			<div class="spinner center">
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+				<div class="spinner-blade"></div>
+			</div>
+		</div>
+		<div class="radar-loading" ng-if="cardCastLoading">
+			<div class="grid"></div>
+			<div class="wave f1"></div>
+			<div class="wave f2"></div>
+			<div class="wave f3"></div>
+			<div class="wave f4"></div>
+			<div class="wave f5"></div>
+			<div class="wave f6"></div>
+			<div class="wave f7"></div>
+			<div class="wave f8"></div>
+			<div class="wave f9"></div>
+			<div class="wave f10"></div>
+		</div>
+		<div class="list-group" ng-show="!searchLoading && !cardCastLoading">
+			<a ui-sref="contact({id: contact.id})" class="list-group-item clearfix" ng-repeat="contact in app.searchedContacts">
+				<div class="col-xs-3">
+					<div ng-include="getCard(contact.templateID)" class="cardInclude"></div>
+				</div>
+				<div class="col-xs-9">
+					<p ng-bind="contact.fullName"></p>
+					<p ng-bind="contact.email"></p>
+				</div>
+			</a>
+		</div>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

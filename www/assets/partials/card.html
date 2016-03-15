@@ -1,0 +1,109 @@
+<div class="cards page">
+	<header>
+		<a class="pull-left back" href="javascript:void(0)" ng-click="goBack()"><i class="fa fa-chevron-left"></i> back</a>
+		<h1>Edit card</h1>
+	</header>
+	<div class="content">
+		<form ng-submit="save()">
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_full_name"><i class="fa fa-user"></i></label>
+				<input type="text" class="form-control" placeholder="Full Name" id="create_contact_full_name" ng-model="card.fullName">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_email"><i class="fa fa-envelope-o"></i></label>
+				<input type="email" class="form-control" placeholder="Email" id="create_contact_email" ng-model="card.email">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_phone"><i class="fa fa-phone"></i></label>
+				<input type="text" class="form-control" placeholder="Phone" id="create_contact_phone" ng-model="card.phone">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_company"><i class="fa fa-building"></i></label>
+				<input type="text" class="form-control" placeholder="Company" id="create_contact_company" ng-model="card.company">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_position"><i class="fa fa-map-marker"></i></label>
+				<input type="text" class="form-control" placeholder="Position" id="create_contact_position" ng-model="card.position">
+			</div>
+			<div class="relative">
+				<div class="input-group">
+					<label class="input-group-addon" for="create_contact_occupation"><i class="fa fa-user-secret"></i></label>
+					<input type="search" class="form-control" placeholder="Occupation" autocomplate="off" id="create_contact_occupation" ng-model="card.occupation" ng-model-options="{debounce: 1000}">
+				</div>
+				<ul class="input-group-list" ng-if="occupations">
+					<li ng-repeat="occupation in occupations" ng-bind="occupation" ng-click="selectOccupation(occupation)"></li>
+				</ul>
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_fax"><i class="fa fa-fax"></i></label>
+				<input type="text" class="form-control" placeholder="Fax" id="create_contact_fax" ng-model="card.fax">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_address1"><i class="fa fa-location-arrow"></i></label>
+				<input type="text" class="form-control" placeholder="Address 1" id="create_contact_address1" ng-model="card.address1">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_address2"><i class="fa fa-location-arrow"></i></label>
+				<input type="text" class="form-control" placeholder="Address 2" id="create_contact_address2" ng-model="card.address2">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_city"><i class="fa fa-globe"></i></label>
+				<input type="text" class="form-control" placeholder="City" id="create_contact_city" ng-model="card.city">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_state"><i class="fa fa-globe"></i></label>
+				<input type="text" class="form-control" placeholder="State" id="create_contact_state" ng-model="card.state">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_zip"><i class="fa fa-file-archive-o"></i></label>
+				<input type="text" class="form-control" placeholder="Zip" id="create_contact_zip" ng-model="card.zip">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_country"><i class="fa fa-globe"></i></label>
+				<input type="text" class="form-control" placeholder="Country" id="create_contact_country" ng-model="card.country">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_website"><i class="fa fa-edge"></i></label>
+				<input type="text" class="form-control" placeholder="Website" id="create_contact_website" ng-model="card.website">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_facebook"><i class="fa fa-facebook"></i></label>
+				<input type="text" class="form-control" placeholder="Facebook" id="create_contact_facebook" ng-model="card.facebook">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_linkedIn"><i class="fa fa-linkedin"></i></label>
+				<input type="text" class="form-control" placeholder="LinkedIn" id="create_contact_linkedIn" ng-model="card.linkedIn">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_twitter"><i class="fa fa-twitter"></i></label>
+				<input type="text" class="form-control" placeholder="Twitter" id="create_contact_twitter" ng-model="card.twitter">
+			</div>
+			<div class="input-group">
+				<label class="input-group-addon" for="create_contact_notes"><i class="fa fa-sticky-note-o"></i></label>
+				<textarea class="form-control" placeholder="Notes" id="create_contact_notes" ng-model="card.notes"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="checkbox-inline">
+					<div class="checkbox">
+						<input type="checkbox" ng-model="card.public" id="create_contact_public" ng-checked="card.public == 1 ? true : false">
+						<label for="create_contact_public">Public</label>
+					</div>
+				</div>
+				<div class="checkbox-inline">
+					<div class="checkbox">
+						<input type="checkbox" ng-model="card.isDefault" id="create_contact_isDefault" ng-checked="card.isDefault == 1 ? true : false">
+						<label for="create_contact_isDefault">Default</label>
+					</div>
+				</div>
+			</div>
+			<div class="cardCarousel">
+				<ul rn-carousel rn-carousel-controls rn-carousel-index="card.templateID" rn-carousel-buffered rn-carousel-controls ng-style="{height: getCarouselHeight()}">
+					<li ng-repeat="template in app.cardTemplates">
+						<div ng-include="getCard(template)" class="cardInclude"></div>
+					</li>
+				</ul>
+			</div>
+			<button type="submit" class="btn btn-default btn-lg btn-block btn-save">Save</button>
+		</form>
+	</div>
+</div>

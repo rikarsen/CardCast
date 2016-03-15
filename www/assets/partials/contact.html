@@ -1,0 +1,61 @@
+<div class="contacts page">
+	<header>
+		<a class="pull-left back" href="javascript:void(0)" ng-click="goBack()"><i class="fa fa-chevron-left"></i> back</a>
+		<h1>Contact</h1>
+	</header>
+	<div class="content">
+		<div class="box">
+			<div class="top row">
+				<div ng-class="app.contacts[contact.id] ? 'col-xs-12' : 'col-xs-7'">
+					<div class="avatar"></div>
+					<div class="info">
+						<h1 ng-bind="contact.fullName"></h1>
+					</div>
+				</div>
+				<div class="col-xs-5" ng-if="!app.contacts[contact.id]">
+					<a href="javascript:void(0)" class="addToMyContacts" ng-click="add()">
+						<i class="fa fa-plus"></i>
+						<p>Add to my contacts</p>
+					</a>
+				</div>
+			</div>
+			<div class="contactCard">
+				<div ng-include="getCard(app.contacts[contact.id].templateID)" class="cardInclude"></div>
+			</div>
+			<div class="footer clearfix" ng-if="!searched">
+				<div class="col-xs-6">
+					<a href="javascript:void(0)" class="shareFromMyContacts" ng-click="shareContact(contact.id)">
+						<i class="fa fa-share-alt-square"></i>
+						<span>Share</span>
+					</a>
+				</div>
+				<div class="col-xs-6">
+					<a href="javascript:void(0)" class="removeFromMyContacts text-right" ng-click="remove()">
+						<i class="fa fa-trash"></i>
+						<span>Remove</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<ul class="fa-ul">
+			<li ng-if="contact.fullName"><i class="fa-li fa fa-user"></i> <span ng-bind="contact.fullName"></span></li>
+			<li ng-if="contact.email"><i class="fa-li fa fa-envelope-o"></i> <span ng-bind="contact.email"></span></li>
+			<li ng-if="contact.phone"><i class="fa-li fa fa-phone"></i> <span ng-bind="contact.phone"></span></li>
+			<li ng-if="contact.company"><i class="fa-li fa fa-building"></i> <span ng-bind="contact.company"></span></li>
+			<li ng-if="contact.position"><i class="fa-li fa fa-map-marker"></i> <span ng-bind="contact.position"></span></li>
+			<li ng-if="contact.occupation"><i class="fa-li fa fa-user-secret"></i> <span ng-bind="contact.occupation"></span></li>
+			<li ng-if="contact.fax"><i class="fa-li fa fa-fax"></i> <span ng-bind="contact.fax"></span></li>
+			<li ng-if="contact.address1"><i class="fa-li fa fa-location-arrow"></i> <span ng-bind="contact.address1"></span></li>
+			<li ng-if="contact.address2"><i class="fa-li fa fa-location-arrow"></i> <span ng-bind="contact.address2"></span></li>
+			<li ng-if="contact.city"><i class="fa-li fa fa-globe"></i> <span ng-bind="contact.city"></span></li>
+			<li ng-if="contact.state"><i class="fa-li fa fa-globe"></i> <span ng-bind="contact.state"></span></li>
+			<li ng-if="contact.zip"><i class="fa-li fa fa-file-archive-o"></i> <span ng-bind="contact.zip"></span></li>
+			<li ng-if="contact.country"><i class="fa-li fa fa-globe"></i> <span ng-bind="contact.country"></span></li>
+			<li ng-if="contact.website"><i class="fa-li fa fa-edge"></i> <span ng-bind="contact.website"></span></li>
+			<li ng-if="contact.facebook"><i class="fa-li fa fa-facebook"></i> <span ng-bind="contact.facebook"></span></li>
+			<li ng-if="contact.linkedIn"><i class="fa-li fa fa-linkedin"></i> <span ng-bind="contact.linkedIn"></span></li>
+			<li ng-if="contact.twitter"><i class="fa-li fa fa-twitter"></i> <span ng-bind="contact.twitter"></span></li>
+		</ul>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

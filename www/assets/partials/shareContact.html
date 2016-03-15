@@ -1,0 +1,19 @@
+<div class="contacts page">
+	<header>
+		<h1>Share contact</h1>
+	</header>
+	<div class="content">
+		<div class="list-group">
+			<a href="javascript:void(0)" ng-click="share(contact.id)" class="list-group-item clearfix" ng-repeat="contact in app.contacts">
+				<div class="col-xs-3">
+					<div ng-include="getCard(contact.templateID)" class="cardInclude"></div>
+				</div>
+				<div class="col-xs-9">
+					<p ng-bind="contact.fullName"></p>
+					<p ng-bind="contact.email"></p>
+				</div>
+			</a>
+		</div>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

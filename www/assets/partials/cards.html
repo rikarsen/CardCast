@@ -1,0 +1,24 @@
+<div class="cards page">
+	<header>
+		<a class="pull-left back" href="javascript:void(0)" ng-click="goBack()"><i class="fa fa-chevron-left"></i> back</a>
+		<h1>My cards</h1>
+	</header>
+	<div class="content">
+		<ul class="list-group">
+			<li class="list-group-item row" ng-repeat="card in app.cards | orderObjectBy:'id':true">
+				<div class="col-xs-3">
+					<div ng-include="getCard(card.templateID)" class="cardInclude"></div>
+				</div>
+				<div class="col-xs-6">
+					<p ng-bind="card.fullName"></p>
+					<p ng-bind="card.email"></p>
+				</div>
+				<div class="col-xs-3 cardsButtons">
+					<a ui-sref="card({id: card.id})" class="btn btn-edit">Edit</a>
+					<button type="button" ng-click="delete(card.id)" class="btn btn-delete">Delete</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

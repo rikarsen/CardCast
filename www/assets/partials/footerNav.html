@@ -1,0 +1,27 @@
+<footer class="nav">
+	<a ui-sref="home" ui-sref-active="active" class="col-xs-3">
+		<div class="tab">
+			<i class="fa fa-home"></i>
+			<span class="label">Home</span>
+		</div>
+	</a>
+	<a ui-sref="contacts" ui-sref-active="active" class="col-xs-3">
+		<div class="tab">
+			<i class="fa fa-credit-card"></i>
+			<span class="label">Contacts</span>
+		</div>
+	</a>
+	<a ui-sref="alerts" ui-sref-active="active" class="col-xs-3">
+		<div class="tab">
+			<i class="fa fa-bell-o"></i>
+			<span class="label">Alerts</span>
+			<span class="badge" ng-bind="app.alerts.noReadCount" ng-if="app.alerts.noReadCount != 0"></span>
+		</div>
+	</a>
+	<a ui-sref="profile" ui-sref-active="active" class="col-xs-3">
+		<div class="tab">
+			<i class="fa fa-user"></i>
+			<span class="label">My Profile</span>
+		</div>
+	</a>
+</footer>

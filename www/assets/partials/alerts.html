@@ -1,0 +1,84 @@
+<div class="alerts page">
+	<header>
+		<h1>Alerts</h1>
+	</header>
+	<div class="content">
+		<uib-tabset active="activeJustified" justified="true">
+			<uib-tab index="0">
+				<uib-tab-heading>
+					Request <span class="badge" ng-if="alerts.requestNoAnswerCount != 0" ng-bind="alerts.requestNoAnswerCount"></span>
+				</uib-tab-heading>
+				<ul class="list-group">
+					<li class="list-group-item clearfix" ng-repeat="alert in app.alerts.request | orderObjectBy:'id':true">
+						<div ng-if="alert.type == 'cardRequest'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> requested your card</p>
+								<div class="row" ng-if="alert.isAnswer == 0">
+									<button type="button" ng-click="reject(alert.id)" class="btn pull-right btn-alert btn-reject">Reject</button>
+									<button type="button" ng-click="accept(alert.id)" class="btn pull-right btn-alert btn-accept">Accept</button>
+								</div>
+							</div>
+						</div>
+						<div ng-if="alert.type == 'cardRequestAccepted'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> accepted your request</p>
+							</div>
+						</div>
+						<div ng-if="alert.type == 'cardRequestRejected'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> rejected your request</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</uib-tab>
+			<uib-tab index="1">
+				<uib-tab-heading>
+					Share <span class="badge" ng-if="alerts.shareNoAnswerCount != 0" ng-bind="alerts.shareNoAnswerCount"></span>
+				</uib-tab-heading>
+				<ul class="list-group">
+					<li class="list-group-item clearfix" ng-repeat="alert in app.alerts.share | orderObjectBy:'id':true">
+						<div ng-if="alert.type == 'shareFromMyCards'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> shared from his cards with you</p>
+								<div class="row" ng-if="alert.isAnswer == 0">
+									<button type="button" ng-click="reject(alert.id)" class="btn pull-right btn-alert btn-reject">Reject</button>
+									<button type="button" ng-click="accept(alert.id)" class="btn pull-right btn-alert btn-accept">Accept</button>
+								</div>
+							</div>
+						</div>
+						<div ng-if="alert.type == 'shareFromMyCardsAccepted'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> accepted share request</p>
+							</div>
+						</div>
+						<div ng-if="alert.type == 'shareFromMyCardsRejected'">
+							<div class="col-xs-3">
+								<div ng-include="getCard(app.cards[alert.obj1].templateID)" class="cardInclude"></div>
+							</div>
+							<div class="col-xs-9">
+								<p><strong ng-bind="alert.details.user.firstName + ' ' + alert.details.user.lastName"></strong> rejected share request</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+	<ng-include src="'assets/partials/footerNav.html'"></ng-include>
+</div>

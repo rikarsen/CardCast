@@ -1,0 +1,63 @@
+.card {
+	width: 336px;
+	height: 192px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.card-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.card-inner-1 {
+	width: 100%;
+	height: 100%;
+	border: solid 4px #5e848f;
+	background: #c5bcaf;
+}
+.card-inner-2 {
+	width: 100%;
+	height: 100%;
+	border: solid 4px #f1eff8;
+}
+.card-top {
+	height: 50%;
+	text-align: center;
+	margin: auto;
+	padding: 12px 0 6px 0;
+}
+.card-bottom {
+	height: 50%;
+	border-top: solid 2px #f1eff8;
+	background: #5e848f;
+	padding: 10px 0;
+}
+.card-name {
+	font-size: 26px;
+	font-weight: normal;
+	color: #f1eff8;
+	margin: 0;
+}
+.card-company {
+	font-size: 14px;
+	font-weight: bold;
+	color: #f1eff8;
+	text-transform: uppercase;
+	margin: 0;
+}
+.card-phone, .card-email {
+	color: #EDE7DD;
+	margin: 0;
+}
+.card-webImg {
+	border-left: solid 1px #ccc;
+	text-align: center;
+}
+.card-webImg img {
+	width: 70px;
+	-webkit-filter: invert(90%);
+	filter: invert(90%);
+}
